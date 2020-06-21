@@ -25,6 +25,7 @@ namespace Xuexi.Util
         {
             var response = client.Execute(request).Content;
             JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+            if (jObject == null || jObject["data"].ToString() == "[]") return;
             foreach (var item in jObject["data"])
             {
                 ThisModel study = JsonConvert.DeserializeObject<ThisModel>(item.ToString());
