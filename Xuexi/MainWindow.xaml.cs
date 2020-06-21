@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xuexi.Models;
+using Xuexi.Util;
 using Xuexi.ViewModel;
 
 namespace Xuexi
@@ -35,9 +37,20 @@ namespace Xuexi
             }
         }
 
-        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SearchTextBox.Text = "输入连续的几个字试试";
+            Func<List<ThisModel>> action = new Func<List<ThisModel>>(()=>
+            {
+                if (this.SearchTextBox.Text == null) return null;
+                BaseRequest baseRequest = new BaseRequest();
+                baseRequest.RequestUrl = "http://im.1353217661.xyz/index/index/get_result";
+                baseRequest.IsGetRequest = false;
+                baseRequest.Content = $"title={this.SearchTextBox.Text}";
+                GetAnswer answer = new GetAnswer(baseRequest);
+                return answer.Mydatas;
+            });
+            MainViewModel.CallFunction(action);
+            this.DataContext = new MainViewModel();
         }
     }
 }

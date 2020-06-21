@@ -20,11 +20,11 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Orange" BorderThickness="3">
-                <TextBox FontSize="25" TextAlignment="Center" Text="输入连续的几个字试试" Name="SearchTextBox" LostFocus="SearchTextBox_LostFocus" PreviewMouseDown="TextBox_PreviewMouseDown"></TextBox>
+                <TextBox FontSize="25" TextAlignment="Center" Text="输入连续的几个字试试" Name="SearchTextBox" PreviewMouseDown="TextBox_PreviewMouseDown"></TextBox>
             </Border>
             <Border Grid.Column="1" BorderBrush="Orange" BorderThickness="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Width="100">搜索</Button>
+                    <Button Width="100" Name="Search_Button" Click="Button_Click">搜索</Button>
                     <Button Width="100">清空</Button>
                 </StackPanel>
             </Border>
@@ -42,6 +42,7 @@
                 <DataGridTextColumn Binding="{Binding ChoiceB}" Header="选项B" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ChoiceC}" Header="选项C" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ChoiceD}" Header="选项D" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Answer}" Header="答案" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
